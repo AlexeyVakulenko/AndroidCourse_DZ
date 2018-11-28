@@ -16,7 +16,7 @@ public class CustomService extends Service {
 
     public static final int MODE = Service.START_NOT_STICKY;
 
-    public IBinder binder = new LocalBinder();
+    public IBinder binder = new CustomBinder();
 
     public volatile int data;
 
@@ -58,7 +58,7 @@ public class CustomService extends Service {
         }
     }
 
-    public class LocalBinder extends Binder {
+    public class CustomBinder extends Binder {
         CustomService getService() {
             return CustomService.this;
         }
