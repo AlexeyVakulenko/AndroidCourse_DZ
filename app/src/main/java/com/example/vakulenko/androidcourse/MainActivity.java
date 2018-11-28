@@ -1,7 +1,6 @@
 package com.example.vakulenko.androidcourse;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -31,5 +30,6 @@ public class MainActivity extends Activity {
                 MainActivity.this.startActivity(new Intent(MainActivity.this, MonitoringAcivity.class));
             }
         });
+
     }
 }
