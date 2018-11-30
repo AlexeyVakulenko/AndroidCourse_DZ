@@ -10,6 +10,8 @@ import java.util.Random;
 
 public class MainActivity extends Activity {
     private static final String POS_KEY = "pos";
+    private static final String VICTORY = "Победа!";
+    private static final String FAIL = "Нет. Попробуйте еще раз..";
     private View rect1;
     private View rect2;
     private View rect3;
@@ -51,16 +53,18 @@ public class MainActivity extends Activity {
         rect1.setOnClickListener(new ClickListener(rect4));
         rect2.setOnClickListener(new ClickListener(rect5));
         rect3.setOnClickListener(new ClickListener(rect6));
-        restartButton.setOnClickListener(new RestartListener());
+        restartButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                restart();
+            }
+        });
         pos = circlePos();
     }
 
     private int circlePos() {
         Random random = new Random(new Date().getTime());
-        int res;
-        int first = random.nextBoolean() ? 1 : 0;
-        int second = random.nextBoolean() ? 1 : 0;
-        res = first + second;
+        int res = (random.nextBoolean() ? 1 : 0) + (random.nextBoolean() ? 1 : 0);
         switch (res) {
             case 0:
                 res = R.id.rect1;
@@ -88,12 +92,12 @@ public class MainActivity extends Activity {
                 v.setBackgroundResource(R.drawable.shape_oval);
                 boundView.setVisibility(View.VISIBLE);
                 textView.setVisibility(View.VISIBLE);
-                textView.setText("Победа!");
+                textView.setText(VICTORY);
             } else {
                 v.setVisibility(View.INVISIBLE);
                 boundView.setVisibility(View.VISIBLE);
                 textView.setVisibility(View.VISIBLE);
-                textView.setText("Нет. Попробуйте еще раз..");
+                textView.setText(FAIL);
             }
             rect1.setEnabled(false);
             rect2.setEnabled(false);
@@ -102,13 +106,6 @@ public class MainActivity extends Activity {
             rect5.setEnabled(false);
             rect6.setEnabled(false);
             restartButton.setVisibility(View.VISIBLE);
-        }
-    }
-
-    private class RestartListener implements View.OnClickListener {
-        @Override
-        public void onClick(View v) {
-            restart();
         }
     }
 }
