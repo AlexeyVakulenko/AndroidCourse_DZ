@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.Random;
 
 public class MainActivity extends Activity {
-
+    private static final String POS_KEY = "pos";
     private View rect1;
     private View rect2;
     private View rect3;
@@ -24,6 +24,18 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         restart();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(POS_KEY, pos);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        pos = savedInstanceState.getInt(POS_KEY);
     }
 
     public void restart() {
