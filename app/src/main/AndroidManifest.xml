@@ -20,6 +20,9 @@
         <service
                 android:name=".StateIntentService"
                 android:exported="false">
+            <intent-filter>
+                <action android:name="com.example.vakulenko.androidcourse.SET_NEW_STATE"></action>
+            </intent-filter>
         </service>
     </application>
 
