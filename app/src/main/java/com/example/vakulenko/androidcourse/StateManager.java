@@ -16,18 +16,6 @@ public class StateManager {
         return stateManager;
     }
 
-    public static StateManager getStateManager() {
-        return stateManager;
-    }
-
-    public static void setStateManager(StateManager stateManager) {
-        StateManager.stateManager = stateManager;
-    }
-
-    public State getState() {
-        return state;
-    }
-
     public void setState(State state) {
         this.state = state;
     }

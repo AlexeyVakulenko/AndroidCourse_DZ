@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import static com.example.vakulenko.androidcourse.StateIntentService.CURRENT_STATE_ACTION;
 import static com.example.vakulenko.androidcourse.StateIntentService.SET_NEW_STATE_ACTION;
 import static com.example.vakulenko.androidcourse.StateIntentService.STATE;
 
@@ -37,7 +38,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        registerReceiver(receiver, new IntentFilter(""));
+        registerReceiver(receiver, new IntentFilter(CURRENT_STATE_ACTION));
         stateTextView.setText(currentState == null ? "" : currentState.name());
     }
 
