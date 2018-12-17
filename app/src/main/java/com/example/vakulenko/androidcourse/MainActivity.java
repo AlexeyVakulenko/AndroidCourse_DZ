@@ -10,13 +10,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import static com.example.vakulenko.androidcourse.StateIntentService.SET_NEW_STATE;
+import static com.example.vakulenko.androidcourse.StateIntentService.SET_NEW_STATE_ACTION;
 import static com.example.vakulenko.androidcourse.StateIntentService.STATE;
 
+/**
+ * Activity, с кнопкой смены состояния и текстовым полем, показывающем текущее состояние сервиса
+ */
 public class MainActivity extends Activity {
+    private static final String CURRENT_STATE = "CURRENT_STATE_ACTION";
     private TextView stateTextView;
     private Button newStateButton;
     private BroadcastReceiver receiver;
+    private State currentState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,25 +30,15 @@ public class MainActivity extends Activity {
 
         stateTextView = findViewById(R.id.stateTextView);
         newStateButton = findViewById(R.id.newStateButton);
-
-        newStateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String stateText = stateTextView.getText().toString();
-                State currentState = null;
-                if (stateText != null && !stateText.isEmpty()) {
-                    currentState = State.valueOf(stateText);
-                }
-                sendNewState(State.getNextState(currentState));
-            }
-        });
-        receiver = new Receiver();
+        newStateButton.setOnClickListener(new ChangeStateListener());
+        receiver = new StateReceiver();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        registerReceiver(receiver, new IntentFilter("com.example.vakulenko.androidcourse.CURRENT_STATE"));
+        registerReceiver(receiver, new IntentFilter(""));
+        stateTextView.setText(currentState == null ? "" : currentState.name());
     }
 
     @Override
@@ -55,17 +50,37 @@ public class MainActivity extends Activity {
     private void sendNewState(State newState) {
         Intent intent = new Intent();
         intent.setPackage(this.getPackageName());
-        intent.setAction(SET_NEW_STATE);
+        intent.setAction(SET_NEW_STATE_ACTION);
         intent.putExtra(STATE, newState);
         startService(intent);
     }
 
-    public class Receiver extends BroadcastReceiver {
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(CURRENT_STATE, currentState == null ? -1 : currentState.ordinal());
+    }
 
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        int stateOrdinal = savedInstanceState.getInt(CURRENT_STATE);
+        currentState = stateOrdinal == -1 ? null : State.values()[stateOrdinal];
+    }
+
+    public class ChangeStateListener implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            sendNewState(State.getNextState(currentState));
+        }
+    }
+
+    public class StateReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent != null) {
-                stateTextView.setText(intent.getSerializableExtra(STATE).toString());
+                currentState = State.valueOf(intent.getSerializableExtra(STATE).toString());
+                stateTextView.setText(currentState.name());
             }
         }
     }
