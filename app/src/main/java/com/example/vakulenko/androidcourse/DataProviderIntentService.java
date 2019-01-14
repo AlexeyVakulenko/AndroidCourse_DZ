@@ -9,7 +9,7 @@ import android.util.Log;
 import java.util.Date;
 
 /**
- * IntentService генерирующий слаучайные данные через каждый TIMEOUT и отправляет их ввиде широковещательного сообщения
+ * IntentService генерирующий случайные данные через каждый TIMEOUT и отправляет их ввиде широковещательного сообщения
  */
 public class DataProviderIntentService extends IntentService {
     public static final String ACTION_START_GENERATE = "com.example.vakulenko.androidcourse.action.START_GENERATE";
