@@ -19,11 +19,13 @@ public class Fragment3 extends Fragment {
 
     private DataProvider provider;
 
+    private TextView textView;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment3, container, false);
-        TextView textView = rootView.findViewById(R.id.text_view_2);
+        textView = rootView.findViewById(R.id.text_view_2);
         String text = provider.getText();
         textView.setText(text);
         return rootView;
@@ -34,5 +36,9 @@ public class Fragment3 extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         provider = (DataProvider) context;
+    }
+
+    public String getText() {
+        return textView.getText().toString();
     }
 }

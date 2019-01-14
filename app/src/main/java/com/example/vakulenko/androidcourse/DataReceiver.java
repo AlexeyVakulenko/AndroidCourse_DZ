@@ -14,11 +14,11 @@ public class DataReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         String data = intent.getStringExtra(DataProviderIntentService.DATA);
         if (data != null) {
-            ((DataReceiver.DataSetable) context).setData(data);
+            ((TextSetable) context).setData(data);
         }
     }
 
-    public interface DataSetable {
+    public interface TextSetable {
         void setData(String data);
     }
 }

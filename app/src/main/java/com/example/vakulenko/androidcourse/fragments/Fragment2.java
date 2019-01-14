@@ -18,6 +18,8 @@ import com.example.vakulenko.androidcourse.R;
  */
 public class Fragment2 extends Fragment implements View.OnClickListener {
 
+    private Fragment3 fragment3;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -32,7 +34,12 @@ public class Fragment2 extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         FragmentManager manager = getFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.container, new Fragment3());
+        Fragment3 fragment3 = new Fragment3();
+        transaction.replace(R.id.container, fragment3);
         transaction.commit();
+    }
+
+    public String getText() {
+        return fragment3 != null ? fragment3.getText() : "";
     }
 }

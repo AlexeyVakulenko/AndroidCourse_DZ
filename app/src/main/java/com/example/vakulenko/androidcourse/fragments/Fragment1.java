@@ -9,14 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import com.example.vakulenko.androidcourse.DataProvider;
-import com.example.vakulenko.androidcourse.DataReceiver;
 import com.example.vakulenko.androidcourse.R;
 
 /**
  * Фрагмент с EditText элементом, в которое может устанавливаться значение
- * @see com.example.vakulenko.androidcourse.DataReceiver.DataSetable
  */
-public class Fragment1 extends Fragment implements DataProvider, DataReceiver.DataSetable {
+public class Fragment1 extends Fragment implements DataProvider {
 
     private EditText editText;
 
@@ -33,8 +31,7 @@ public class Fragment1 extends Fragment implements DataProvider, DataReceiver.Da
         return editText.getText().toString();
     }
 
-    @Override
-    public void setData(String data) {
+    public void setText(String data) {
         editText.setText(data);
     }
 }

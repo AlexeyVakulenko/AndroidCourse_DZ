@@ -1,5 +1,6 @@
 package com.example.vakulenko.androidcourse;
 
+import android.annotation.SuppressLint;
 import android.app.IntentService;
 import android.content.Intent;
 import android.content.Context;
@@ -27,6 +28,7 @@ public class DataProviderIntentService extends IntentService {
         context.startService(intent);
     }
 
+    @SuppressLint("LongLogTag")
     @Override
     protected void onHandleIntent(Intent intent) {
         if (intent != null) {
