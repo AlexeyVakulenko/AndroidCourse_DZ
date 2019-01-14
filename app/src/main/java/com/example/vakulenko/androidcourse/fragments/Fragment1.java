@@ -1,4 +1,4 @@
-package com.example.vakulenko.androidcourse;
+package com.example.vakulenko.androidcourse.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,8 +8,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import com.example.vakulenko.androidcourse.DataProvider;
+import com.example.vakulenko.androidcourse.DataReceiver;
+import com.example.vakulenko.androidcourse.R;
 
-public class Fragment1 extends Fragment implements MainActivity.TextProvider {
+/**
+ * Фрагмент с EditText элементом, в которое может устанавливаться значение
+ * @see com.example.vakulenko.androidcourse.DataReceiver.DataSetable
+ */
+public class Fragment1 extends Fragment implements DataProvider, DataReceiver.DataSetable {
 
     private EditText editText;
 
@@ -24,5 +31,10 @@ public class Fragment1 extends Fragment implements MainActivity.TextProvider {
 
     public String getText() {
         return editText.getText().toString();
+    }
+
+    @Override
+    public void setData(String data) {
+        editText.setText(data);
     }
 }

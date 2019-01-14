@@ -12,10 +12,23 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <service
+                android:name=".DataProviderIntentService"
+                android:exported="false">
+        </service>
+
+        <receiver
+                android:name=".DataReceiver"
+                android:enabled="true"
+                android:exported="true">
+            <intent-filter>
+                <action android:name="com.example.vakulenko.androidcourse.extra.DATA"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

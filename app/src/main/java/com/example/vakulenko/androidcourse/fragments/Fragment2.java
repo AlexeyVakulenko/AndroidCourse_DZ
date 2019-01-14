@@ -1,4 +1,4 @@
-package com.example.vakulenko.androidcourse;
+package com.example.vakulenko.androidcourse.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,7 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import com.example.vakulenko.androidcourse.R;
 
+/**
+ * Фрагмента с кнопкой для отображения еще одного фрагмента
+ * @see Fragment3
+ */
 public class Fragment2 extends Fragment implements View.OnClickListener {
 
     @Nullable
