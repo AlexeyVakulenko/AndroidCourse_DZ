@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">AndroidCourse</string>
+    <string name="show_text">Показать текст</string>
+    <string name="simple_text_1">simple_text_1</string>
+    <string name="simple_text_2">simple_text_2</string>
+    <string name="simple_text_3">simple_text_3</string>
 </resources>
