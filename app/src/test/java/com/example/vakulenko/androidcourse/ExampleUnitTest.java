@@ -1,6 +1,10 @@
 package com.example.vakulenko.androidcourse;
 
+import android.content.Intent;
 import org.junit.Test;
+
+import java.util.Date;
+import java.util.Random;
 
 import static org.junit.Assert.*;
 
